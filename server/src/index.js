@@ -253,6 +253,83 @@ app.patch('/api/admin/orders/:id/status', requireAdmin, async (req, res) => {
   }
 });
 
+app.get('/', (_req, res) => {
+  res.json({
+    service: 'aurelia-api',
+    status: 'online',
+    version: '1.0.0',
+    message: 'Aurelia Store API is running',
+    routes: [
+      {
+        method: 'GET',
+        path: '/api/health',
+        auth: 'Public',
+        description: 'Check API availability',
+      },
+      {
+        method: 'POST',
+        path: '/api/auth/login',
+        auth: 'Public',
+        description: 'Authenticate an admin user',
+      },
+      {
+        method: 'GET',
+        path: '/api/products',
+        auth: 'Public',
+        description: 'List products with optional search and category filters',
+      },
+      {
+        method: 'GET',
+        path: '/api/products/:id',
+        auth: 'Public',
+        description: 'Get a single product',
+      },
+      {
+        method: 'POST',
+        path: '/api/products',
+        auth: 'Admin',
+        description: 'Create a product',
+      },
+      {
+        method: 'PUT',
+        path: '/api/products/:id',
+        auth: 'Admin',
+        description: 'Update a product',
+      },
+      {
+        method: 'DELETE',
+        path: '/api/products/:id',
+        auth: 'Admin',
+        description: 'Delete a product',
+      },
+      {
+        method: 'POST',
+        path: '/api/orders',
+        auth: 'Public',
+        description: 'Create a customer order',
+      },
+      {
+        method: 'GET',
+        path: '/api/admin/overview',
+        auth: 'Admin',
+        description: 'Get dashboard analytics and recent activity',
+      },
+      {
+        method: 'GET',
+        path: '/api/admin/orders',
+        auth: 'Admin',
+        description: 'List all orders with line items',
+      },
+      {
+        method: 'PATCH',
+        path: '/api/admin/orders/:id/status',
+        auth: 'Admin',
+        description: 'Update an order status',
+      },
+    ],
+  });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Aurelia API running on port ${PORT}`);
 });
