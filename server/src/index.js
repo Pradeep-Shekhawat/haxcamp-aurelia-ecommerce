@@ -253,4 +253,6 @@ app.patch('/api/admin/orders/:id/status', requireAdmin, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Aurelia API running on http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Aurelia API running on port ${PORT}`);
+});
